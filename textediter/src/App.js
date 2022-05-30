@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Alert from "./Component/Alert";
-// import About from "./Component/About";
+import About from "./Component/About";
 import Footer from "./Component/Footer";
 import Navbar from "./Component/Navbar";
 import Upercase from "./Component/Upercase";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [mode, setMode] = useState("light");
@@ -40,20 +41,29 @@ const App = () => {
   };
 
   return (
-    <div>
-      <Navbar
-        mode={mode}
-        colorChange={colorChange}
-        toggle={toggle}
-        btntext={btntext}
-      />
-      <Alert alert={alert} showAlert={showAlert} mode={mode} />
-      <div className="continer">
-        <Upercase alert={alert} showAlert={showAlert} />
+    <Router>
+      <div>
+        <Navbar
+          mode={mode}
+          colorChange={colorChange}
+          toggle={toggle}
+          btntext={btntext}
+        />
+        <Alert alert={alert} showAlert={showAlert} mode={mode} />
+        <div className="continer">
+          <Routes>
+            <Route exact path="/about" element={<About />} />
+
+            <Route
+              exact
+              path="/"
+              element={<Upercase alert={alert} showAlert={showAlert} />}
+            />
+          </Routes>
+          <Footer />
+        </div>
       </div>
-      {/* <About /> */}
-      <Footer />
-    </div>
+    </Router>
   );
 };
 

@@ -1,22 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   return (
     <div>
       <nav className={`navbar bg-${props.mode}`}>
-        <div className="container-fluid flex">
-          <a
+        <div className="container-fluid ">
+          <Link
             className={`navbar-brand text-${
               props.mode === "light" ? "dark" : "light"
             }`}
-            href="/"
+            to="/"
           >
             Text Editer
-          </a>
+          </Link>
 
-          <a className="text-white" href="/">
+          <Link
+            className={`text-${props.mode === "light" ? "dark" : "light"} `}
+            to="/about"
+          >
             About Us
-          </a>
+          </Link>
           {/* <form className="d-flex" role="search">
             <input
               className="form-control me-2"
@@ -63,7 +67,10 @@ const Navbar = (props) => {
                 {props.mode}
               </label>
             </div> */}
-            <div onClick={props.colorChange} className="colorPallets mx-3 ">
+            <div
+              onClick={props.colorChange}
+              className="colorPallets mx-3 rounded-br"
+            >
               <input type="color" id="colorpicker" />
             </div>
           </div>
